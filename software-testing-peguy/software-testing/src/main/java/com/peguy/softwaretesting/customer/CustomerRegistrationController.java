@@ -17,6 +17,13 @@ public class CustomerRegistrationController {
 
     @PutMapping
     public ResponseEntity<String> registerNewCustomer(@Valid @RequestBody CustomerRegistrationRequest customerRegistrationRequest) {
-        return new ResponseEntity<>("hello", HttpStatus.OK);
+        String customerResponse = customerRegistrationService.registerNewCustomer(customerRegistrationRequest);
+        if(customerResponse.equals("Ok")) {
+            return new ResponseEntity<>("Inserted successfuly", HttpStatus.OK);
+        } else if (customerResponse.equals("Exist")) {
+            return new ResponseEntity<>("Already present in the Db", HttpStatus.ALREADY_REPORTED);
+        } else {
+            return new ResponseEntity<>("Alrerady taken by another user", HttpStatus.BAD_REQUEST);
+        }
     }
 }
