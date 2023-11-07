@@ -14,9 +14,23 @@ public class CustomerRegistrationService {
         this.customerRegistrationRepo = customerRegistrationRepo;
     }
 
-    public Optional<String> registerNewCustomer(CustomerRegistrationRequest customerRegistrationRequest) {
-        //control if the customer exist in the db
-        //if he doesnt exit, then add a new customer in the db
-        return Optional.empty();
+    public String registerNewCustomer(CustomerRegistrationRequest customerRegistrationRequest) {
+        //control if the phone number is taken
+        String phoneNumber = customerRegistrationRequest.getCustomer().getPhoneNumber();
+        Optional<Customer> optionalCustomer = customerRegistrationRepo.selectCustomerByPhoneNumber(phoneNumber);
+
+        if(optionalCustomer.isPresent()) {
+            if(optionalCustomer.get().equals(customerRegistrationRequest.getCustomer())){
+                System.out.println( "The phone number " + optionalCustomer.get().getPhoneNumber() + " belongs to: " + optionalCustomer.get().getName());
+                return "Exist";
+            } else {
+                //throw new IllegalStateException("the phone number is already occupied");
+                System.out.println("the phone number is already taken");
+                return "Taken";
+            }
+        } else {
+            customerRegistrationRepo.save(customerRegistrationRequest.getCustomer());
+            return "Ok";
+        }
     }
 }
