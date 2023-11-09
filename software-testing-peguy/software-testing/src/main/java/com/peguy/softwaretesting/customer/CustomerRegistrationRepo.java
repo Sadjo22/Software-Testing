@@ -10,7 +10,7 @@ import java.util.UUID;
 
 @Repository
 public interface CustomerRegistrationRepo extends JpaRepository<Customer, UUID> {
-    @Query(value = "select c.id, c.phoneNumber, c.name from Customer c where c.phoneNumber = :phone_number")
+    @Query(value = "select c from Customer c  where c.phoneNumber = :phone_number")
     Optional<Customer> selectCustomerByPhoneNumber(@Param("phone_number") String phone_number);
 
 }

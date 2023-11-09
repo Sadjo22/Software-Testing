@@ -1,9 +1,6 @@
 package com.peguy.softwaretesting.customer;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
@@ -12,18 +9,20 @@ import java.util.UUID;
 @Entity
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
-
+@AllArgsConstructor
+@ToString
+@EqualsAndHashCode
 public class Customer {
-
     @Id
-    @Setter(AccessLevel.NONE)
     private UUID id;
 
     @NotBlank
+    @Column(nullable = false)
     private String name;
+
     @NotBlank
+    @Column(nullable = false)
     private String phoneNumber;
 
 }

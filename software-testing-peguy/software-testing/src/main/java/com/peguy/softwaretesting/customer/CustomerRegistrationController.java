@@ -26,4 +26,6 @@ public class CustomerRegistrationController {
             return new ResponseEntity<>("Alrerady taken by another user", HttpStatus.BAD_REQUEST);
         }
     }
+
+
 }
