@@ -6,6 +6,7 @@ import lombok.*;
 @Getter
 @EqualsAndHashCode
 @AllArgsConstructor
+@NoArgsConstructor
 public class CustomerRegistrationRequest {
-    private final Customer customer;
+    private Customer customer;
 }
