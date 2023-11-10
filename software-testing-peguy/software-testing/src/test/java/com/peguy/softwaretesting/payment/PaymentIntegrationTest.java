@@ -3,7 +3,10 @@ package com.peguy.softwaretesting.payment;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.peguy.softwaretesting.customer.Customer;
 import com.peguy.softwaretesting.customer.CustomerRegistrationRequest;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.platform.engine.TestExecutionResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -36,6 +39,9 @@ public class PaymentIntegrationTest {
     private MockMvc mockMvc;
 
     @Test
+    //@DisplayName("Should made the payment successfully!")
+    /*@ParameterizedTest
+    @CsvSource()*/
     void itShouldCreatePaymentSuccessfully() throws Exception {
         //Given
         UUID id = UUID.randomUUID();
